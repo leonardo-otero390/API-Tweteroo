@@ -1,9 +1,17 @@
+import joi from 'joi';
 import tweets from '../database/tweets.js';
+
+const tweetSchema = joi.object({
+    username: joi.string().min(1).required(),
+    tweet: joi.string().min(1).required(),
+  });
 
 export async function insertTweet(req, res) {
   const newTweet = req.body;
+  const validation = tweetSchema.validate(newTweet);
+  if (validation.error) return res.status(400).send("Todos os campos são obrigatórios!");
   tweets.push(newTweet);
-  res.sendStatus(200);
+  return res.status(201).send("OK");
 }
 
 export async function get10LastTweets(req, res) {
