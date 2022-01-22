@@ -8,7 +8,7 @@ const tweetSchema = joi.object({
 
 export async function insertTweet(req, res) {
   const { tweet } = req.body;
-  const { username } = req.headers;
+  const username = req.headers.user;
   const newTweet = { tweet, username };
   const validation = tweetSchema.validate(newTweet);
   if (validation.error)
