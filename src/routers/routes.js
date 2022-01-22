@@ -1,7 +1,9 @@
 import { Router } from 'express';
-import { insertTweet } from '../controllers/tweetsController.js';
+import {
+  insertTweet,
+  get10LastTweets,
+} from '../controllers/tweetsController.js';
 import { signUp } from '../controllers/usersController.js';
-
 
 const routes = new Router();
 
@@ -11,5 +13,6 @@ routes.get('/health', async (req, res) => {
 
 routes.post('/sign-up', signUp);
 routes.post('/tweets', insertTweet);
+routes.get('/tweets', get10LastTweets);
 
 export default routes;
