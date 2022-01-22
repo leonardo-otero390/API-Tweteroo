@@ -7,7 +7,9 @@ const tweetSchema = joi.object({
 });
 
 export async function insertTweet(req, res) {
-  const newTweet = req.body;
+  const { tweet } = req.body;
+  const { username } = req.headers;
+  const newTweet = { tweet, username };
   const validation = tweetSchema.validate(newTweet);
   if (validation.error)
     return res.status(400).send('Todos os campos são obrigatórios!');
