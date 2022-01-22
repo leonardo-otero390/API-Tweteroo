@@ -1,8 +1,5 @@
 import { Router } from 'express';
-import {
-  insertTweet,
-  get10LastTweets,
-} from '../controllers/tweetsController.js';
+import * as tweetsController from '../controllers/tweetsController.js';
 import { signUp } from '../controllers/usersController.js';
 
 const routes = new Router();
@@ -12,7 +9,8 @@ routes.get('/health', async (req, res) => {
 });
 
 routes.post('/sign-up', signUp);
-routes.post('/tweets', insertTweet);
-routes.get('/tweets', get10LastTweets);
+routes.post('/tweets', tweetsController.insertTweet);
+routes.get('/tweets', tweetsController.get10LastTweets);
+routes.get('/tweets/:username', tweetsController.findTweetsByUsername);
 
 export default routes;
