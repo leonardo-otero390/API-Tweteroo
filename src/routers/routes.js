@@ -10,7 +10,7 @@ routes.get('/health', async (req, res) => {
 
 routes.post('/sign-up', signUp);
 routes.post('/tweets', tweetsController.insertTweet);
-routes.get('/tweets', tweetsController.get10LastTweets);
+routes.get('/tweets', tweetsController.findTweets);
 routes.get('/tweets/:username', tweetsController.findTweetsByUsername);
 
 export default routes;

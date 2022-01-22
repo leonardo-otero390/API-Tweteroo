@@ -15,9 +15,13 @@ export async function insertTweet(req, res) {
   return res.status(201).send('OK');
 }
 
-export async function get10LastTweets(req, res) {
-  const last10 = tweets.slice(-10);
-  res.send(last10);
+export async function findTweets(req, res) {
+  const { page } = req.query;
+  if (!page) return res.send(tweets.slice(-10));
+  if (page < 1) return res.sendStatus(400);
+  const start = -10 * page;
+  const end = tweets.length - 10 * (page - 1);
+  return res.send(tweets.slice(start, end));
 }
 
 export async function findTweetsByUsername(req, res) {
