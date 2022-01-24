@@ -20,12 +20,12 @@ export async function insertTweet(req, res) {
 
 export async function findTweets(req, res) {
   const { page } = req.query;
-  if (!page) return res.send(tweets.slice(-10));
+  if (!page) return res.send(tweets.slice(-10).sort(() => -1));
   if (page < 1) return res.sendStatus(400);
   const start = -10 * page;
   const end = tweets.length - 10 * (page - 1);
   if (end <= 0 && page > 1) return res.send([]);
-  return res.send(tweets.slice(start, end));
+  return res.send(tweets.slice(start, end).sort(() => -1));
 }
 
 export async function findTweetsByUsername(req, res) {
