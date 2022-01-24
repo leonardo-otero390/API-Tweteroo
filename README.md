@@ -97,6 +97,7 @@ GET /tweets?page=x
 ]
 ```
 </details>
+
 ## Technologies
 
 <a title="JavaScript" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> 
