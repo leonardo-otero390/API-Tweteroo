@@ -13,7 +13,7 @@ export async function insertTweet(req, res) {
   const validation = tweetSchema.validate({ tweet, username });
   const { avatar } = users.find((user) => user.username === username);
   if (validation.error)
-  return res.status(400).send('Todos os campos são obrigatórios!');
+    return res.status(400).send('Todos os campos são obrigatórios!');
   tweets.push({ tweet, username, avatar });
   return res.status(201).send('OK');
 }
@@ -24,6 +24,7 @@ export async function findTweets(req, res) {
   if (page < 1) return res.sendStatus(400);
   const start = -10 * page;
   const end = tweets.length - 10 * (page - 1);
+  if (end <= 0 && page > 1) return res.send([]);
   return res.send(tweets.slice(start, end));
 }
 
