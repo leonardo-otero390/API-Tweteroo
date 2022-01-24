@@ -1,5 +1,6 @@
 import joi from 'joi';
 import tweets from '../database/tweets.js';
+import users from '../database/users.js';
 
 const tweetSchema = joi.object({
   username: joi.string().min(1).required(),
@@ -9,11 +10,11 @@ const tweetSchema = joi.object({
 export async function insertTweet(req, res) {
   const { tweet } = req.body;
   const username = req.headers.user;
-  const newTweet = { tweet, username };
-  const validation = tweetSchema.validate(newTweet);
+  const validation = tweetSchema.validate({ tweet, username });
+  const { avatar } = users.find((user) => user.username === username);
   if (validation.error)
-    return res.status(400).send('Todos os campos são obrigatórios!');
-  tweets.push(newTweet);
+  return res.status(400).send('Todos os campos são obrigatórios!');
+  tweets.push({ tweet, username, avatar });
   return res.status(201).send('OK');
 }
 
