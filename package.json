@@ -1,8 +1,8 @@
 {
-  "name": "app",
+  "name": "api-tweteero",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "API Tweteroo is the backend without a database for Tweteroo, which store and provides users information and tweets.",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
@@ -14,7 +14,7 @@
     "url": ""
   },
   "keywords": [],
-  "author": "",
+  "author": "Leonardo Bittencourt Otero",
   "license": "ISC",
   "bugs": {
     "url": ""
